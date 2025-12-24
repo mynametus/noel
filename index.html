@@ -228,6 +228,128 @@
             border-radius: 12px;
         }
 
+        /* Santa Flying Animation */
+        .santa-flying {
+            position: fixed;
+            top: 8%;
+            left: -400px;
+            z-index: 50;
+            animation: flySanta 20s linear infinite;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
+        }
+
+        .santa-flying img {
+            width: 350px;
+            height: auto;
+            transform: scaleX(-1); /* Flip để ông già Noel nhìn về phía trước */
+        }
+
+        @keyframes flySanta {
+            0% {
+                left: -400px;
+                top: 10%;
+                transform: rotate(-2deg);
+            }
+            15% {
+                top: 5%;
+                transform: rotate(1deg);
+            }
+            30% {
+                top: 15%;
+                transform: rotate(-1deg);
+            }
+            50% {
+                top: 8%;
+                transform: rotate(2deg);
+            }
+            70% {
+                top: 12%;
+                transform: rotate(-1deg);
+            }
+            85% {
+                top: 6%;
+                transform: rotate(1deg);
+            }
+            100% {
+                left: 110%;
+                top: 10%;
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Gift Boxes - Under the tree */
+        .gifts-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: -30px;
+            align-items: flex-end;
+            position: relative;
+            z-index: 5;
+        }
+
+        .gift {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+        }
+
+        .gift:hover {
+            transform: scale(1.15) rotate(-5deg) !important;
+        }
+
+        .gift:nth-child(1) { animation: giftFloat 3s ease-in-out infinite 0s; }
+        .gift:nth-child(2) { animation: giftFloat 3s ease-in-out infinite 0.3s; }
+        .gift:nth-child(3) { animation: giftFloat 3s ease-in-out infinite 0.6s; }
+        .gift:nth-child(4) { animation: giftFloat 3s ease-in-out infinite 0.9s; }
+        .gift:nth-child(5) { animation: giftFloat 3s ease-in-out infinite 1.2s; }
+
+        @keyframes giftFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        .gift svg {
+            width: 70px;
+            height: auto;
+        }
+
+        .gift-1 svg { width: 60px; }
+        .gift-2 svg { width: 75px; }
+        .gift-3 svg { width: 65px; }
+        .gift-4 svg { width: 55px; }
+        .gift-5 svg { width: 68px; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .santa-flying img {
+                width: 200px;
+            }
+            .gifts-container {
+                gap: 6px;
+                margin-top: -20px;
+            }
+            .gift svg { width: 45px; }
+            .gift-1 svg { width: 40px; }
+            .gift-2 svg { width: 50px; }
+            .gift-3 svg { width: 45px; }
+            .gift-4 svg { width: 38px; }
+            .gift-5 svg { width: 46px; }
+        }
+
+        @media (min-width: 768px) {
+            .santa-flying img {
+                width: 400px;
+            }
+            .gift svg { width: 85px; }
+            .gift-1 svg { width: 75px; }
+            .gift-2 svg { width: 90px; }
+            .gift-3 svg { width: 80px; }
+            .gift-4 svg { width: 68px; }
+            .gift-5 svg { width: 82px; }
+        }
+
     </style>
 </head>
 <body>
@@ -242,10 +364,196 @@
         <h1>🎄 Merry Christmas 🎄</h1>
     </div>
 
+    <!-- Santa Flying -->
+    <div class="santa-flying">
+        <img src="santa.svg" alt="Santa Claus" draggable="false">
+    </div>
+
     <!-- Tree -->
     <div class="tree-wrapper">
         <div class="tree-container">
             <img draggable="false" src="tree.svg" alt="Christmas Tree" class="tree-svg">
+        </div>
+        
+        <!-- Gift Boxes - Under the tree -->
+        <div class="gifts-container">
+            <!-- Gift 1 - Red with Green Ribbon -->
+            <div class="gift gift-1">
+                <svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Box Body -->
+                    <path d="M10 40 L10 85 L90 85 L90 40 L10 40" fill="#8B2323"/>
+                    <path d="M10 40 L5 45 L5 90 L10 85 L10 40" fill="#5C1515"/>
+                    <!-- Box Lid -->
+                    <path d="M5 25 L5 40 L95 40 L95 25 L5 25" fill="#DC3545"/>
+                    <path d="M5 40 L0 45 L0 30 L5 25" fill="#B02A37"/>
+                    <path d="M95 25 L100 30 L100 45 L95 40" fill="#B02A37"/>
+                    <!-- Green Ribbon Vertical -->
+                    <rect x="42" y="25" width="16" height="60" fill="#228B22"/>
+                    <rect x="42" y="25" width="16" height="60" fill="url(#ribbonShine1)"/>
+                    <!-- Green Ribbon Horizontal on Lid -->
+                    <rect x="5" y="28" width="90" height="10" fill="#228B22"/>
+                    <!-- Bow -->
+                    <ellipse cx="35" cy="18" rx="15" ry="10" fill="#32CD32" transform="rotate(-30 35 18)"/>
+                    <ellipse cx="65" cy="18" rx="15" ry="10" fill="#32CD32" transform="rotate(30 65 18)"/>
+                    <ellipse cx="50" cy="22" rx="8" ry="6" fill="#228B22"/>
+                    <path d="M42 22 Q50 5 58 22" fill="#2E8B2E"/>
+                    <path d="M35 25 L30 40" stroke="#228B22" stroke-width="4"/>
+                    <path d="M65 25 L70 40" stroke="#228B22" stroke-width="4"/>
+                    <!-- Sparkles -->
+                    <circle cx="25" cy="55" r="3" fill="#C9A86C" opacity="0.7"/>
+                    <circle cx="75" cy="70" r="2.5" fill="#C9A86C" opacity="0.6"/>
+                    <circle cx="80" cy="50" r="2" fill="#C9A86C" opacity="0.5"/>
+                    <defs>
+                        <linearGradient id="ribbonShine1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0);"/>
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.3);"/>
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0);"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Gift 2 - Blue with Gold Ribbon -->
+            <div class="gift gift-2">
+                <svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Box Body -->
+                    <path d="M10 40 L10 85 L90 85 L90 40 L10 40" fill="#1E4D8C"/>
+                    <path d="M10 40 L5 45 L5 90 L10 85 L10 40" fill="#143661"/>
+                    <!-- Box Lid -->
+                    <path d="M5 25 L5 40 L95 40 L95 25 L5 25" fill="#2563EB"/>
+                    <path d="M5 40 L0 45 L0 30 L5 25" fill="#1D4ED8"/>
+                    <path d="M95 25 L100 30 L100 45 L95 40" fill="#1D4ED8"/>
+                    <!-- Gold Ribbon Vertical -->
+                    <rect x="42" y="25" width="16" height="60" fill="#DAA520"/>
+                    <rect x="42" y="25" width="16" height="60" fill="url(#ribbonShine2)"/>
+                    <!-- Gold Ribbon Horizontal -->
+                    <rect x="5" y="28" width="90" height="10" fill="#DAA520"/>
+                    <!-- Bow -->
+                    <ellipse cx="35" cy="18" rx="15" ry="10" fill="#FFD700" transform="rotate(-30 35 18)"/>
+                    <ellipse cx="65" cy="18" rx="15" ry="10" fill="#FFD700" transform="rotate(30 65 18)"/>
+                    <ellipse cx="50" cy="22" rx="8" ry="6" fill="#DAA520"/>
+                    <path d="M42 22 Q50 5 58 22" fill="#B8860B"/>
+                    <path d="M35 25 L30 40" stroke="#DAA520" stroke-width="4"/>
+                    <path d="M65 25 L70 40" stroke="#DAA520" stroke-width="4"/>
+                    <!-- Sparkles -->
+                    <circle cx="22" cy="60" r="3" fill="#87CEEB" opacity="0.7"/>
+                    <circle cx="78" cy="55" r="2.5" fill="#87CEEB" opacity="0.6"/>
+                    <defs>
+                        <linearGradient id="ribbonShine2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0);"/>
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.3);"/>
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0);"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Gift 3 - Red with Green Ribbon (Classic) -->
+            <div class="gift gift-3">
+                <svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Box Body -->
+                    <path d="M10 40 L10 85 L90 85 L90 40 L10 40" fill="#A52A2A"/>
+                    <path d="M10 40 L5 45 L5 90 L10 85 L10 40" fill="#6B1C1C"/>
+                    <!-- Box Lid -->
+                    <path d="M5 25 L5 40 L95 40 L95 25 L5 25" fill="#E53935"/>
+                    <path d="M5 40 L0 45 L0 30 L5 25" fill="#C62828"/>
+                    <path d="M95 25 L100 30 L100 45 L95 40" fill="#C62828"/>
+                    <!-- Green Ribbon Vertical -->
+                    <rect x="42" y="25" width="16" height="60" fill="#2E7D32"/>
+                    <rect x="42" y="25" width="16" height="60" fill="url(#ribbonShine3)"/>
+                    <!-- Green Ribbon Horizontal -->
+                    <rect x="5" y="28" width="90" height="10" fill="#2E7D32"/>
+                    <!-- Bow -->
+                    <ellipse cx="35" cy="18" rx="15" ry="10" fill="#4CAF50" transform="rotate(-30 35 18)"/>
+                    <ellipse cx="65" cy="18" rx="15" ry="10" fill="#4CAF50" transform="rotate(30 65 18)"/>
+                    <ellipse cx="50" cy="22" rx="8" ry="6" fill="#2E7D32"/>
+                    <path d="M42 22 Q50 5 58 22" fill="#1B5E20"/>
+                    <path d="M35 25 L30 40" stroke="#2E7D32" stroke-width="4"/>
+                    <path d="M65 25 L70 40" stroke="#2E7D32" stroke-width="4"/>
+                    <!-- Sparkles -->
+                    <circle cx="25" cy="55" r="3" fill="#C9A86C" opacity="0.7"/>
+                    <circle cx="75" cy="70" r="2.5" fill="#C9A86C" opacity="0.6"/>
+                    <circle cx="20" cy="75" r="2" fill="#C9A86C" opacity="0.5"/>
+                    <defs>
+                        <linearGradient id="ribbonShine3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0);"/>
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.3);"/>
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0);"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Gift 4 - Gold with Red Ribbon -->
+            <div class="gift gift-4">
+                <svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Box Body -->
+                    <path d="M10 40 L10 85 L90 85 L90 40 L10 40" fill="#B8860B"/>
+                    <path d="M10 40 L5 45 L5 90 L10 85 L10 40" fill="#8B6914"/>
+                    <!-- Box Lid -->
+                    <path d="M5 25 L5 40 L95 40 L95 25 L5 25" fill="#FFD700"/>
+                    <path d="M5 40 L0 45 L0 30 L5 25" fill="#DAA520"/>
+                    <path d="M95 25 L100 30 L100 45 L95 40" fill="#DAA520"/>
+                    <!-- Red Ribbon Vertical -->
+                    <rect x="42" y="25" width="16" height="60" fill="#DC143C"/>
+                    <rect x="42" y="25" width="16" height="60" fill="url(#ribbonShine4)"/>
+                    <!-- Red Ribbon Horizontal -->
+                    <rect x="5" y="28" width="90" height="10" fill="#DC143C"/>
+                    <!-- Bow -->
+                    <ellipse cx="35" cy="18" rx="15" ry="10" fill="#FF4444" transform="rotate(-30 35 18)"/>
+                    <ellipse cx="65" cy="18" rx="15" ry="10" fill="#FF4444" transform="rotate(30 65 18)"/>
+                    <ellipse cx="50" cy="22" rx="8" ry="6" fill="#DC143C"/>
+                    <path d="M42 22 Q50 5 58 22" fill="#B22222"/>
+                    <path d="M35 25 L30 40" stroke="#DC143C" stroke-width="4"/>
+                    <path d="M65 25 L70 40" stroke="#DC143C" stroke-width="4"/>
+                    <!-- Sparkles -->
+                    <circle cx="25" cy="60" r="2.5" fill="#FFF8DC" opacity="0.7"/>
+                    <circle cx="72" cy="68" r="2" fill="#FFF8DC" opacity="0.6"/>
+                    <defs>
+                        <linearGradient id="ribbonShine4" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0);"/>
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.3);"/>
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0);"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Gift 5 - Purple with Silver Ribbon -->
+            <div class="gift gift-5">
+                <svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Box Body -->
+                    <path d="M10 40 L10 85 L90 85 L90 40 L10 40" fill="#5B2C6F"/>
+                    <path d="M10 40 L5 45 L5 90 L10 85 L10 40" fill="#3D1A4A"/>
+                    <!-- Box Lid -->
+                    <path d="M5 25 L5 40 L95 40 L95 25 L5 25" fill="#8E44AD"/>
+                    <path d="M5 40 L0 45 L0 30 L5 25" fill="#7D3C98"/>
+                    <path d="M95 25 L100 30 L100 45 L95 40" fill="#7D3C98"/>
+                    <!-- Silver Ribbon Vertical -->
+                    <rect x="42" y="25" width="16" height="60" fill="#C0C0C0"/>
+                    <rect x="42" y="25" width="16" height="60" fill="url(#ribbonShine5)"/>
+                    <!-- Silver Ribbon Horizontal -->
+                    <rect x="5" y="28" width="90" height="10" fill="#C0C0C0"/>
+                    <!-- Bow -->
+                    <ellipse cx="35" cy="18" rx="15" ry="10" fill="#E8E8E8" transform="rotate(-30 35 18)"/>
+                    <ellipse cx="65" cy="18" rx="15" ry="10" fill="#E8E8E8" transform="rotate(30 65 18)"/>
+                    <ellipse cx="50" cy="22" rx="8" ry="6" fill="#C0C0C0"/>
+                    <path d="M42 22 Q50 5 58 22" fill="#A9A9A9"/>
+                    <path d="M35 25 L30 40" stroke="#C0C0C0" stroke-width="4"/>
+                    <path d="M65 25 L70 40" stroke="#C0C0C0" stroke-width="4"/>
+                    <!-- Sparkles -->
+                    <circle cx="22" cy="58" r="2.5" fill="#DDA0DD" opacity="0.7"/>
+                    <circle cx="76" cy="72" r="2" fill="#DDA0DD" opacity="0.6"/>
+                    <circle cx="78" cy="52" r="2.5" fill="#DDA0DD" opacity="0.5"/>
+                    <defs>
+                        <linearGradient id="ribbonShine5" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0);"/>
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.5);"/>
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0);"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
         </div>
     </div>
 
